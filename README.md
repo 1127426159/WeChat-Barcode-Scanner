@@ -15,18 +15,12 @@ GitHub 开源地址：
 https://github.com/1127426159/WeChat-Barcode-Scanner
 ```
 
-联系作者：
-
-```text
-wechat_scanner@163.com
-```
-
 开源许可和第三方组件致谢见
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 ## 版本与系统要求
 
-当前版本：**v0.1.22**
+当前版本：**v0.1.23**
 
 | 项目 | 要求 |
 | --- | --- |
@@ -133,8 +127,7 @@ WeChat-Barcode-Scanner.zip
 3. 第一次运行时等待依赖安装完成。
 4. 如果 Windows 防火墙弹窗，请允许 Python 访问“专用网络”。
 
-如果电脑没有 Python，`start.bat` 会先尝试通过 `winget` 安装，失败后再从
-Python 官网下载安装包自动安装。
+如果电脑没有 Python，启动脚本会自动选择兼容版本并尝试安装。
 
 **macOS**
 
@@ -153,18 +146,8 @@ chmod +x START-FOR-MAC.command start-mac.command start.sh setup_env.sh
 sh START-FOR-MAC.command
 ```
 
-这是未签名开源脚本在 macOS 上被 Gatekeeper 拦截时的处理方式。只应从本项目
-GitHub Release 或小程序内置包中获取并运行这些命令。
-
+这组命令同时处理“无法验证开发者”和“没有适当访问权限”两个问题。
 通用服务端包内还提供了 `MACOS-无法打开请看.txt`，可以直接按照文件中的步骤操作。
-
-如果提示“do not have appropriate access privileges”，说明执行权限丢失。
-请在解压后的文件夹打开终端并运行：
-
-```bash
-chmod +x START-FOR-MAC.command start-mac.command start.sh setup_env.sh
-./START-FOR-MAC.command
-```
 
 如果电脑没有 Python，启动脚本会从 Python 官网下载官方 universal2 安装包，
 并通过 macOS 安装器安装；此时需要输入一次管理员密码。

@@ -2,6 +2,6 @@
   "encoding": "base64",
   "module": "package-data.js",
   "package": "WeChat-Barcode-Scanner.zip",
-  "sha256": "d8a9271383d966d3676eca4f3807c05881be300b8896892a3c5acb226d72fe54",
-  "version": "0.1.22"
+  "sha256": "96d28660c25e0969ace8585cead1e0a24d126827882ff0fd22de41d78c5dfa6b",
+  "version": "0.1.23"
 }
