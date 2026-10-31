@@ -1,0 +1,149 @@
+<view class="page">
+  <view class="card hero">
+    <view class="eyebrow">使用说明</view>
+    <view class="title">让手机变成电脑扫码枪</view>
+    <view class="subtitle">
+      先在电脑上启动服务端，再用手机扫码。条码只通过同一个局域网发送到电脑。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">离线模式：不连接电脑也能使用</view>
+    <view class="section-desc">
+      只扫码、保存和复制条码时，不需要安装电脑端，也不需要连接同一个局域网。
+      在扫码首页点击“进入离线模式”即可；扫码结果只写入小程序当前记录，
+      不会发送到电脑。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">获取电脑端</view>
+    <view class="section-desc">
+      一个压缩包同时包含 Windows 和 macOS 服务端。转发到“文件传输助手”后，
+      在电脑微信里下载并解压即可。
+    </view>
+    <button class="btn server" bindtap="shareServerPackage" loading="{{sharing}}">
+      转发通用服务端
+    </button>
+    <view class="system-guide">
+      <view>Windows 用户：双击 START-FOR-WINDOWS.bat</view>
+      <view>macOS 用户：双击 START-FOR-MAC.command</view>
+    </view>
+    <view class="tip">转发文件请在手机微信中使用；开发者工具可能不支持。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">电脑上怎么安装</view>
+    <view class="step">
+      <text class="step-no">1</text>
+      <view class="step-body">
+        <view class="step-title">从文件助手下载</view>
+        <view class="step-text">在电脑微信打开“文件传输助手”，点击刚转发的文件并下载。</view>
+      </view>
+    </view>
+    <view class="step">
+      <text class="step-no">2</text>
+      <view class="step-body">
+        <view class="step-title">解压并启动</view>
+        <view class="step-text">
+          同一个包解压后，Windows 双击 START-FOR-WINDOWS.bat；
+          macOS 双击 START-FOR-MAC.command。
+          首次启动会安装运行环境，Windows/macOS 缺少 Python 时会自动下载安装。
+          Windows 7/8/8.1 使用 Python 3.8.10，Windows 10/11 使用 Python 3.11.9。
+        </view>
+      </view>
+    </view>
+    <view class="step">
+      <text class="step-no">3</text>
+      <view class="step-body">
+        <view class="step-title">允许局域网访问</view>
+        <view class="step-text">
+          Windows 防火墙弹窗时请允许“专用网络”；macOS 请按提示授予“辅助功能”权限。
+        </view>
+      </view>
+    </view>
+    <view class="step">
+      <text class="step-no">4</text>
+      <view class="step-body">
+        <view class="step-title">连接并扫码</view>
+        <view class="step-text">
+          Windows 会自动打开一张清晰的二维码图片，macOS 会在终端显示二维码。
+          回到扫码首页扫描它，并确认手机和电脑连接同一个 Wi-Fi。
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">常见问题</view>
+
+    <view class="faq-block">
+      <view class="faq-question">macOS 提示无法验证开发者或没有访问权限</view>
+      <view class="section-desc">
+        先点“完成”，打开“系统设置 → 隐私与安全性”，在“安全性”区域点击
+        “仍要打开”。如果弹窗没有该按钮，或提示
+        “do not have appropriate access privileges”，在解压后的文件夹打开终端，
+        运行下面命令：
+      </view>
+      <view class="terminal-command">{{macStartCommand}}</view>
+      <button class="btn copy" bindtap="copyMacStartCommand">复制 macOS 启动命令</button>
+      <view class="tip">只从本项目 GitHub 或小程序内置包下载时使用此命令。</view>
+    </view>
+
+    <view class="faq-divider"></view>
+
+    <view class="faq-block">
+      <view class="faq-question">小程序显示连接超时</view>
+      <view class="faq">确认电脑端窗口仍在运行。</view>
+      <view class="faq">手机和电脑要连接同一个局域网，不能使用访客 Wi-Fi。</view>
+      <view class="faq">检查 Windows 防火墙是否允许 Python 接收连接。</view>
+      <view class="faq">核对小程序里的 IP 和端口是否与电脑终端一致。</view>
+      <view class="faq">
+        如果使用 VMware/VirtualBox，请把虚拟机网络改成桥接模式，
+        NAT 地址手机通常无法访问。
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">开源地址</view>
+    <view class="github">{{githubUrl}}</view>
+    <button class="btn copy" bindtap="copyGithub">复制 GitHub 地址</button>
+    <view class="tip">可以在浏览器中查看源码、更新说明和最新 Release。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">联系作者</view>
+    <view class="section-desc">
+      使用问题、功能建议或合作咨询，可以通过邮件联系作者。
+    </view>
+    <view class="contact-email">{{authorEmail}}</view>
+    <button class="btn copy" bindtap="copyEmail">复制作者邮箱</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">开源致谢</view>
+    <view class="section-desc">
+      感谢以下开源项目及其作者、贡献者。完整许可证声明随服务端包和 GitHub
+      仓库中的 THIRD_PARTY_NOTICES.md 提供。
+    </view>
+    <view class="library-list">
+      <text class="library-tag">PyAutoGUI · BSD</text>
+      <text class="library-tag">PyObjC · MIT</text>
+      <text class="library-tag">Segno · BSD</text>
+      <text class="library-tag">PyScreeze · BSD</text>
+      <text class="library-tag">PyMsgBox · GPLv3+</text>
+      <text class="library-tag">pytweening · BSD</text>
+      <text class="library-tag">MouseInfo · GPLv3+</text>
+      <text class="library-tag">PyGetWindow · BSD</text>
+      <text class="library-tag">Pyperclip · BSD</text>
+      <text class="library-tag">Pillow · HPND</text>
+      <text class="library-tag">CPython · PSF</text>
+      <text class="library-tag">GitHub Actions · MIT</text>
+    </view>
+    <view class="thanks">
+      谢谢所有开源作者和贡献者。
+    </view>
+  </view>
+
+</view>

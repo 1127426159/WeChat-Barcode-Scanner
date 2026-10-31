@@ -1,0 +1,12 @@
+# 统一换行，避免 shell 脚本在 macOS 上因 CRLF 无法执行
+
+* text=auto
+
+*.sh   text eol=lf
+*.command text eol=lf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.py   text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf

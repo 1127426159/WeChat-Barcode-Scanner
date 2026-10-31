@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/scan/scan",
+    "pages/help/help"
+  ],
+  "window": {
+    "navigationBarTitleText": "扫码枪工具",
+    "navigationBarBackgroundColor": "#1f2937",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#111827"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

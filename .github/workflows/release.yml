@@ -1,0 +1,63 @@
+name: Build and publish release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Build server package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify embedded server package
+        run: python tools/build_server_packages.py --check
+
+      - name: Build cross-platform package
+        run: python tools/build_server_packages.py
+
+      - name: Upload server package
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-package
+          path: |
+            dist/release/WeChat-Barcode-Scanner.zip
+            dist/release/WeChat-Barcode-Scanner.zip.sha256
+          if-no-files-found: error
+
+  publish-release:
+    name: Publish GitHub release
+    needs:
+      - package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download packages
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Create release and attach packages
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            dist/WeChat-Barcode-Scanner.zip \
+            dist/WeChat-Barcode-Scanner.zip.sha256 \
+            --repo "${GITHUB_REPOSITORY}" \
+            --verify-tag \
+            --generate-notes \
+            --title "WeChat-Barcode-Scanner ${GITHUB_REF_NAME}"

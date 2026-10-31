@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="card status-card">
+    <view class="row">
+      <text class="label">{{localOnly ? '使用模式' : '电脑'}}</text>
+      <text class="value {{connected || localOnly ? 'ok' : 'muted'}}">
+        {{localOnly ? '离线模式（不发送）' : (connected ? hostName : '未连接')}}
+      </text>
+    </view>
+    <view class="row" wx:if="{{connected}}">
+      <text class="label">地址</text>
+      <text class="value mono">{{hostIp}}</text>
+    </view>
+    <view class="row">
+      <text class="label">{{localOnly ? '已记录' : '已发送'}}</text>
+      <text class="value">{{sendCount}} 条</text>
+    </view>
+    <view class="status {{lastStatusType}}" wx:if="{{lastStatus}}">{{lastStatus}}</view>
+  </view>
+
+  <view class="card" wx:if="{{!connected && !localOnly}}">
+    <view class="card-title">连接电脑</view>
+    <button class="btn primary" bindtap="scanHostQr">扫描电脑上的二维码</button>
+    <button class="btn offline" bindtap="useLocalMode">进入离线模式</button>
+    <view class="link" bindtap="toggleManual">{{showManual ? '收起手动输入' : '手动输入 IP:端口'}}</view>
+    <view wx:if="{{showManual}}" class="manual">
+      <input
+        class="input"
+        placeholder="例如 192.168.0.108:47653"
+        placeholder-class="ph"
+        value="{{manualInput}}"
+        bindinput="onManualInput"
+      />
+      <button class="btn" bindtap="connectManual">连接</button>
+    </view>
+    <view class="hint">电脑端启动后会显示二维码和所有网卡地址，扫描后会自动逐个尝试连接。</view>
+  </view>
+
+  <view class="card" wx:if="{{connected || localOnly}}">
+    <button class="btn scan" bindtap="scanOnce">扫描条码</button>
+    <view class="local-hint" wx:if="{{localOnly}}">
+      离线模式：只写入当前扫码记录，不会向电脑发送任何内容。
+    </view>
+    <view class="last" wx:if="{{lastCode}}">
+      <text class="label">最近一条</text>
+      <text class="code mono">{{lastCode}}</text>
+    </view>
+    <view class="mode-links">
+      <text wx:if="{{localOnly}}" class="link" bindtap="enableComputerMode">改为连接电脑</text>
+      <text wx:else class="link" bindtap="useLocalMode">切换到离线模式</text>
+      <text wx:if="{{connected}}" class="link danger" bindtap="disconnect">断开连接</text>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{history.length}}">
+    <view class="card-title row-between">
+      <text>记录</text>
+      <view>
+        <text class="link small" bindtap="copyHistory">复制</text>
+        <text class="link small danger" bindtap="clearHistory">清空</text>
+      </view>
+    </view>
+    <view class="history-item" wx:for="{{history}}" wx:key="index">
+      <text class="time mono">{{item.time}}</text>
+      <text class="code mono {{item.ok ? '' : 'bad'}}">{{item.code}}</text>
+    </view>
+  </view>
+
+  <view class="card help-entry">
+    <view class="help-entry-title">第一次使用？</view>
+    <view class="hint">
+      这里可以查看电脑端安装教程，并把 Windows 或 macOS 服务端转发到微信文件助手。
+    </view>
+    <button class="btn help-btn" bindtap="openHelp">查看教程并获取电脑端</button>
+  </view>
+</view>

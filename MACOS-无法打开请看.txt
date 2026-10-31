@@ -1,0 +1,35 @@
+macOS 提示“Apple could not verify”时怎么打开
+
+这是 macOS 对未签名下载文件的拦截，不代表服务端文件损坏。
+
+方法一：在系统设置里允许
+
+1. 在警告窗口点击“完成”。
+2. 打开屏幕左上角苹果菜单，进入“系统设置”。
+3. 点击“隐私与安全性”。
+4. 向下找到“安全性”区域。
+5. 看到 START-FOR-MAC.command 被阻止时，点击“仍要打开 / Open Anyway”。
+6. 输入电脑登录密码并确认。
+7. 回到解压后的文件夹，再次双击 START-FOR-MAC.command。
+
+方法二：用终端启动
+
+1. 在 Finder 中打开解压后的 WeChat-Barcode-Scanner 文件夹。
+2. 在文件夹中打开“终端”。可以在终端输入 cd，然后把文件夹拖进终端窗口。
+3. 进入正确文件夹后，执行：
+
+   xattr -dr com.apple.quarantine .
+   sh START-FOR-MAC.command
+
+如果提示没有执行权限，再执行：
+
+   chmod +x START-FOR-MAC.command
+   sh START-FOR-MAC.command
+
+终端会继续安装依赖并启动服务端。
+
+注意：
+- 请确认文件来自本项目 GitHub Release 或小程序内置包。
+- 首次安装 Python 时可能需要输入一次管理员密码。
+- macOS 仍提示辅助功能权限时，请到“系统设置 → 隐私与安全性 → 辅助功能”
+  中勾选终端。

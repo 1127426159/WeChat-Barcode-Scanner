@@ -1,0 +1,44 @@
+WeChat-Barcode-Scanner 快速开始
+
+这个压缩包同时支持 Windows 和 macOS，只需要下载一次。
+
+Windows 用户：
+    双击 START-FOR-WINDOWS.bat
+
+macOS 用户：
+    双击 START-FOR-MAC.command
+    如果提示“Apple could not verify”：
+    1. 点击“完成”
+    2. 打开“系统设置 → 隐私与安全性”
+    3. 在“安全性”区域点击“仍要打开”
+
+    如果弹窗里没有“仍要打开”，请在解压文件夹打开终端并运行：
+        xattr -dr com.apple.quarantine .
+        sh START-FOR-MAC.command
+
+    如果提示没有执行权限，请在解压文件夹打开终端并运行：
+        chmod +x START-FOR-MAC.command start-mac.command start.sh setup_env.sh
+        ./START-FOR-MAC.command
+
+请根据电脑系统只点对应文件，不要点另一个系统的启动文件。
+
+第一次启动会自动安装依赖。
+- Windows 没有 Python 时，会尝试 winget，失败后从 Python 官网自动下载安装。
+- Windows 7/8/8.1 会自动安装兼容的 Python 3.8.10。
+- Windows 10/11 会自动安装 Python 3.11.9。
+- macOS 没有 Python 时，会下载官方安装包，可能需要输入一次管理员密码。
+
+启动后：
+1. 允许 Windows 防火墙的“专用网络”访问。
+2. macOS 在系统设置中授予“辅助功能”权限。
+3. 电脑终端会显示二维码。
+4. 回到微信小程序，扫描该二维码。
+5. 点选电脑上准备接收文字的输入框，再开始扫描条码。
+
+只使用扫码记录时，可以在小程序里进入“离线模式”，不需要启动电脑端。
+
+GitHub:
+https://github.com/1127426159/WeChat-Barcode-Scanner
+
+联系作者：
+wechat_scanner@163.com

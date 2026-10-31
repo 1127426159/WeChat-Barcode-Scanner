@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+*.spec
+
+# Local config and logs
+config.json
+*.log
+
+# Temporary cleanup directory
+.pycache-trash/
+.local-config/
+
+# Editor / OS
+.vscode/
+.idea/
+miniprogram/project.private.config.json
+miniprogram/project.config.json
+.edge-headless/
+/assets/
+.DS_Store
+Thumbs.db

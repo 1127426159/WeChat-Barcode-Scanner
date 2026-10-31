@@ -1,0 +1,10 @@
+# Computer-side runtime dependencies for Windows and macOS (Python 3.7+)
+#
+# Install:
+#   .venv\Scripts\python.exe -m pip install -r requirements.txt
+#
+# Optional QR support:
+#   .venv\Scripts\python.exe -m pip install segno
+
+pyautogui==0.9.54 ; platform_system == "Windows" or platform_system == "Darwin"
+pyobjc-framework-Quartz ; platform_system == "Darwin"
